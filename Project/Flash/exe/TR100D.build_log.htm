@@ -1,0 +1,66 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.32.0.0
+Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Microsoft NINGMEI, Microsoft, LIC=BUURY-IJQFT-EVM1R-KF80X-XFR85-BGITS
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.32.0.0
+Toolchain Path:  D:\keil\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.32.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      Segger\JL2CM3.dll V2.99.38.0
+Dialog DLL:      TCM.DLL V1.46.0.0
+ 
+<h2>Project:</h2>
+d:\WORK\离心机\程序\凯达\凯达\LDCL-510-V1.0\Project\project.uvprojx
+Project File Date:  11/23/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\keil\ARM\ARMCC\Bin'
+Build target 'TR100D'
+compiling main.c...
+..\USER\main.c(56): warning:  #940-D: missing return statement at end of non-void function "USH_User_App" 
+  }
+..\USER\main.c(65): warning:  #177-D: variable "i"  was declared but never referenced
+  	uint8_t i;
+..\USER\main.c(66): warning:  #177-D: variable "a32"  was declared but never referenced
+  	int32_t a32;	
+..\USER\main.c(67): warning:  #177-D: variable "b32"  was declared but never referenced
+  	uint32_t b32,c32,d32;
+..\USER\main.c(67): warning:  #177-D: variable "c32"  was declared but never referenced
+  	uint32_t b32,c32,d32;
+..\USER\main.c(67): warning:  #177-D: variable "d32"  was declared but never referenced
+  	uint32_t b32,c32,d32;
+..\USER\main.c(111): warning:  #177-D: variable "e16"  was declared but never referenced
+  	static uint16_t e16[3];
+..\USER\main.c: 7 warnings, 0 errors
+linking...
+Program Size: Code=89566 RO-data=1738 RW-data=1416 ZI-data=1233200  
+FromELF: creating hex file...
+After Build - User command #1: D:\keil\ARM\ARMCC\bin\fromelf.exe --bin --output ./Flash/TR100D.bin ./Flash/exe/TR100D.axf
+".\Flash\exe\TR100D.axf" - 0 Error(s), 7 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.11.0.pack
+                Keil.STM32F4xx_DFP.2.11.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  D:\keil\Keil\STM32F4xx_DFP\2.11.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

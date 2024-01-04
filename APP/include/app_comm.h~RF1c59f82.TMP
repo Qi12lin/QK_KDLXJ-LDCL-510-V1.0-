@@ -1,0 +1,496 @@
+#include "typedef.h"
+
+#ifndef _COMM_PROC_H
+#define _COMM_PROC_H (1)
+
+#define	HLDREG_MAX_NUM		1305
+#define	HLDREG_MAX_ADR		(HLDREG_MAX_NUM-1)
+extern 	INT16U	HldReg[HLDREG_MAX_NUM];		//4x 1-100	--cmd 16/3	(W/R)保持寄存器	
+extern INT16U		VFD_ParaAddr[7][15];
+#define		VFD_UP_TIME_ADDR	0
+#define		VFD_DOWN_TIME_ADDR	1
+#define		VFD_CMD_ADDR		2				//控制命令地址
+#define		VFD_SET_FRE_ADDR	3			//频率设定地址
+#define		VFD_RUN_FRE_ADDR	4			//运行频率地址（监控）
+#define		VFD_START_CMD		5				//正转命令
+#define		VFD_REVERSE_CMD		6			//反转命令
+#define		VFD_STOP_CMD		7				//停止命令
+#define		VFD_ERROR_ADDR		8			//故障地址
+#define		VFD_FRE_INPUT_ADDR	9		//频率源选择地址
+#define		VFD_AVI_INPUT		10			//模拟信号输入方式
+#define		VFD_RS485_INPUT		11		//通信方式
+#define		VFD_UP_LIMIT_ADDR	12
+#define		VFD_DOWN_LIMIT_ADDR	13
+#define		VFD_MAX_OUTPUT_ADDR	14
+//前80个断电保持区域数据------------------------------------------------------------
+
+#define ENCODER_NUMBER		1		//编码器码数
+#define LANGUAGE			2		//语言选择  0－中文，1－English
+#define RISE_TEMPER     	3     //固态继电器故障检测，温度上升的度数
+#define HEAT_TIME       	4     //固态继电器故障检测，温度上升时间设置
+#define HT1					5		//高温报警值
+#define HT2					6		//高温停机值
+#define LT					7		//主缸温度低于设定值-LT时，关闭主泵变频器
+#define	VFD_TYPE		    8	//变频器类型
+#define	VFD1_SET_FRE	 	9	//频率设定
+#define	VFD2_SET_FRE	  	10	//频率2设定
+#define PUMP_MODE			11	//自动手动运行模式
+#define HEAT_FOLLOW_EN	    12		//管枪加热曲线随主缸
+#define TEMP_JIAOQIANG_START	13//胶枪启动温度
+#define VFD_DELAY			14//变频器启动延时－－－匀热时间
+#define VFD_AUTO_RUN		15//变频器自动运行
+#define TEMP_TYPE			16	//温度传感器类型
+#define IN_FRE_MIN			17//外部最低速度输入1
+#define IN_FRE_MAX			18//外部最高速度输入1
+#define OUT_FRE_MIN			19//最低输出频率1
+#define OUT_FRE_MAX			20//最高输出频率1
+#define REV_PUMP_FRE			21//反泵频率
+#define REV_PUMP_TIME			22//反泵时间
+#define HOLD_TEMPERATURE		23		  //保温温度
+#define	VFD2_UP_LIMIT_FRE	   		24	//上限频率设定2
+#define	VFD2_DOWN_LIMIT_FRE	   	25	//下限频率设定2
+#define	VFD1_UP_LIMIT_FRE	   		26	//上限频率设定1
+#define	VFD1_DOWN_LIMIT_FRE	   	27	//下限频率设定1
+#define	VFD1_MAX_OUTPUT_FRE	   	28	//最大频率设定1
+#define	VFD2_MAX_OUTPUT_FRE	   	29	//最大频率设定2
+#define	PLAN						30	//定时开关机
+#define BOOT_HOUR				31
+#define SHUTDOWN_HOUR		32
+#define START_HOUR1			33
+#define FINISH_HOUR1		34
+#define START_HOUR2			35
+#define FINISH_HOUR2		36
+#define BOOT_MINUTE 		37
+#define SHUTDOWN_MINUTE		38
+#define START_MINUTE1		39
+#define FINISH_MINUTE1		40
+#define START_MINUTE2		41
+#define FINISH_MINUTE2		42
+#define MONDAY_EN			43	//星期一				WORKDAY	
+#define TUESDAY_EN			44	//
+#define WEDNESDAY_EN		45	//
+#define THURSDAY_EN			46	//星期四
+#define FRIDAY_EN			47	//
+#define SATURDAY_EN			48	//
+#define SUNDAY_EN			49	//星期日
+
+#define	VFD_CMD_ADDR_CUSTOM		50	//变频器控制地址－－自定义模式
+#define	VFD_SET_FRE_ADDR_CUSTOM	51	//变频器设定频率地址
+#define	VFD_RUN_FRE_ADDR_CUSTOM	52	//变频器输出频率地址
+#define	VFD_START_CMD_CUSTOM	53	//电机正转
+#define	VFD_REVERSE_CMD_CUSTOM	54	//电机反转
+#define	VFD_STOP_CMD_CUSTOM		55	//电机停止
+#define	VFD_FRE_INPUT_ADDR_CUSTOM	56//频率信号输入方式 
+#define	VFD_AVI_INPUT_CUSTOM		57//模拟信号给定
+#define	VFD_RS485_INPUT_CUSTOM		58//RS485给定
+#define	VFD_UP_LIMIT_ADDR_CUSTOM	59//上限频率
+#define	VFD_DOWN_LIMIT_ADDR_CUSTOM	60//下限频率
+#define	VFD_MAX_OUTPUT_ADDR_CUSTOM	61//最大频率地址－－自定义模式
+#define IN_FRE_MIN2			62//外部最低速度输入2
+#define IN_FRE_MAX2			63//外部最高速度输入2
+#define OUT_FRE_MIN2			64//最低输出频率2
+#define OUT_FRE_MAX2			65//最高输出频率2
+#define OFF_DELAY_TIME			66//关胶枪后延时关变频器
+#define GUN_SWITCH_EN			67//枪开关使能
+#define ON_WAIT_PULSE1				71//电眼导通后等待脉冲1
+#define OFF_WAIT_PULSE1				72//电眼关闭后等待脉冲1
+#define ON_PULSE1					73//打胶有效长度脉冲1
+#define OFF_PULSE1					74//打胶无效长度脉冲1
+#define ON_WAIT_PULSE2				75//电眼导通后等待脉冲2
+#define OFF_WAIT_PULSE2				76//电眼关闭后等待脉冲2
+#define ON_PULSE2					77//打胶有效长度脉冲2
+#define OFF_PULSE2					78//打胶无效长度脉冲2
+#define GUNOFF_FRE					79//频率低于一定时强制关断胶枪
+
+//各通道相关参数-----------------------------------------------------------
+#define CH_OFFSET	8
+#define CH1			  80				//80	0X50
+#define CH2			(CH1+CH_OFFSET)		//88   	0X58
+#define CH3			(CH1+CH_OFFSET*2)	//96	0X60
+#define CH4			(CH1+CH_OFFSET*3)	//104	0X68
+#define CH5			(CH1+CH_OFFSET*4)	//112	0X70
+#define CH6			(CH1+CH_OFFSET*5)	//120	0X78
+#define CH7			(CH1+CH_OFFSET*6)	//128	0X80
+#define CH8			(CH1+CH_OFFSET*7)	//136	0X88
+#define CH9			(CH1+CH_OFFSET*8)	//144	0X90
+#define CH10		(CH1+CH_OFFSET*9)	//152	0X98
+#define CH11		(CH1+CH_OFFSET*10)	//160	0XA0
+#define CH12		(CH1+CH_OFFSET*11)	//168	0XA8
+#define CH13		(CH1+CH_OFFSET*12)	//176	0XB0
+#define CH14		(CH1+CH_OFFSET*13)	//184	0XB8
+#define CH15		(CH1+CH_OFFSET*14)	//192	0XC0
+
+#define HEAT_TEMPERATURE	0	//加热温度
+#define ENABLED_FLAG		1	 //通道使能
+#define AUTO_TUNE_Kp		2
+#define AUTO_TUNE_Ti		3
+#define AUTO_TUNE_Td		4
+#define AUTO_TUNE_FLAG		5		//PID自整定
+
+//各通道相关参数结束-----------------------------------------------------------
+
+//PT100-AD值与温度整定
+#define ADJUST_POINT	200	  
+#define AD_OFFSET	6
+#define ADJUST_POINT0	0
+#define ADJUST_POINT1	1
+#define ADJUST_POINT2	2
+#define ADJUST_POINT3	3
+#define ADJUST_POINT4	4
+#define ADJUST_POINT5	5
+
+//热电偶AD值与温度整定
+#define NI120ADJUST_POINT	300	
+#define THERMOADJUST_POINT	400	  
+#define J_THERMOADJUST_POINT	500	 
+//断电保持区-----------------------
+#define ON_WAIT_PULSE1_1			684//电眼导通后等待脉冲1
+#define ON_PULSE1_1					685//打胶有效长度脉冲1
+#define ON_WAIT_PULSE2_1			686//电眼导通后等待脉冲2
+#define ON_PULSE2_1					687//打胶有效长度脉冲2
+#define ON_WAIT_PULSE3_1			688//电眼导通后等待脉冲3
+#define ON_PULSE3_1					689//打胶有效长度脉冲3
+#define ON_WAIT_PULSE4_1			690//电眼导通后等待脉冲4
+#define ON_PULSE4_1					691//打胶有效长度脉冲4
+#define ON_WAIT_PULSE1_2			692//电眼导通后等待脉冲1
+#define ON_PULSE1_2					693//打胶有效长度脉冲1
+#define ON_WAIT_PULSE2_2			694//电眼导通后等待脉冲2
+#define ON_PULSE2_2					695//打胶有效长度脉冲2
+#define ON_WAIT_PULSE3_3			696//电眼导通后等待脉冲3
+#define ON_PULSE3_3					697//打胶有效长度脉冲3
+#define ON_WAIT_PULSE4_4			698//电眼导通后等待脉冲4
+#define ON_PULSE4_4					699//打胶有效长度脉冲4
+//-------------------------------------------------------
+#define CH_NUM				701		//总加热路数
+#define UNIFIED_SET_KEY			703		  //统一设定按钮
+
+#define RECOVERY1			706	//报警恢复标志
+#define RECOVERY2			707	//报警恢复标志
+#define RECOVERY3			708	//报警恢复标志
+#define RECOVERY4			709	//报警恢复标志
+#define   LOCK_YEAR_1  		710	//第一期锁机年
+#define   LOCK_MONTH_1 		711//第一期锁机月
+#define   LOCK_DAY_1   		712//第一期锁机日
+#define   LOCK_YEAR_2  		713
+#define   LOCK_MONTH_2 		714
+#define   LOCK_DAY_2   		715
+#define   LOCK_YEAR_3  		716
+#define   LOCK_MONTH_3 		717
+#define   LOCK_DAY_3   		718
+#define	  LOCK_LEVEL		719//密码等级
+#define   LOCK_EN			720	//锁机标志
+
+#define LOCK_LEVEL1_HI		730	//1期密码高		32位数据
+#define LOCK_LEVEL1_LO		731	//1期密码低
+#define LOCK_LEVEL2_HI		732	//2期密码高
+#define LOCK_LEVEL2_LO		733	//2期密码低
+#define LOCK_LEVEL3_HI		734	//3期密码高
+#define LOCK_LEVEL3_LO		735	//3期密码低
+#define ENTER_SET_VGUS_HI	736		  //进入参数设置界面密码(保存)   32位
+#define ENTER_SET_VGUS_LO	737
+#define INPUT_UNLOCK_PASS_HI	738		  //锁机后输入解锁密码   32位
+#define INPUT_UNLOCK_PASS_LO	739	
+#define INPUT_SET_LOCK_PAGE_HI	740		  //输入进入锁机参数设置界面密码   32位
+#define INPUT_SET_LOCK_PAGE_LO	741
+#define INPUT_SET_FUNC_PAGE_HI	742		  //输入进入功能参数设置界面密码   32位
+#define INPUT_SET_FUNC_PAGE_LO	743
+#define INPUT_SET_TEMP_PAGE_HI	744		  //输入进入温度设置界面密码   32位
+#define INPUT_SET_TEMP_PAGE_LO	745
+#define INPUT_SET_TEMP_EN_PAGE_HI	746		  //输入进入英文温度设置界面密码   32位
+#define INPUT_SET_TEMP_EN_PAGE_LO	747
+
+
+#define CH1_ALARM_TEMP	760//CH1报警
+#define CH11_ALARM_TEMP	770//CH11报警
+#define CH1_READY_TEMP	771//CH1就绪
+#define CH11_READY_TEMP	781//CH11就绪
+#define PRODUCTION_DATE_NO	782//出厂日期设置次数
+#define PRODUCTION_DATE_HI	783		  //出厂日期设置   32位
+#define PRODUCTION_DATE_LO	784
+#define IN_FRE_2				785//输入速度2
+#define IN_FRE_3				786//输入速度3
+#define IN_FRE_4				787//输入速度4
+#define OUT_FRE_2			788//输出频率2
+#define OUT_FRE_3			789//输出频率3
+#define OUT_FRE_4			790//输出频率4
+#define HEAT_START			791//加热自动总启停------------------------------
+#define MOTOR_START_TOUCH	792//马达启停
+#define MOTOR_CTRL_MODE		793//马达控制模式
+#define MOTOR_OUTSIDE_CTRL_MODE		794//马达外控模式
+#define MOTOR_OUTSIDE_CTRL_TIME		795//马达外控定时时间
+#define HEAT_MODE					796//加热保温选择	0加热，1待机
+
+#define CH_ENABLE_VGUS		798		  //触摸屏上通道使能
+#define VFD_ENABLE_VGUS		799		  //触摸屏上变频器使能
+//800以后的地址为非断电保持区域
+//各通道相关参数-中间变量-----------------------------------------------------------
+#define WORK_TEMPER1			800	//0x320显示温度，1秒钟更新1次
+#define WORK_TEMPER2			801	//
+#define WORK_TEMPER3			802	//
+#define WORK_TEMPER4			803	//
+#define WORK_TEMPER5			804	//
+#define WORK_TEMPER6			805	//
+#define WORK_TEMPER7			806	//
+#define WORK_TEMPER8			807	//
+#define WORK_TEMPER9			808	//
+#define WORK_TEMPER10			809	//
+#define WORK_TEMPER11			810	//
+//以下数据为实时读取模块的数据*************************************************
+#define WORK_TEMPER12			811	//扩展模块0x32B
+#define WORK_TEMPER13			812	//
+#define WORK_TEMPER14			813	//
+#define WORK_TEMPER15			814	//显示温度，1秒钟更新1次
+#define	ALARM_CODE_S	    	815//模块故障信息
+
+#define	TEMP_ADC12	    		817	//0x331
+#define	TEMP_ADC13	    		818	//
+#define	TEMP_ADC14	    		819	//
+#define	TEMP_ADC15	    		820	//
+#define	ADJUST_ERR_S    		821//校准状态显示
+//以上数据为实时读取模块的数据***********************************************
+
+//以下数据为实时发送给模块的数据*************************************************
+#define	CH1_TEMPERATURE_M	    825//主缸当前温度发送给模块
+#define	STATE_CODE_M	    	826//主机发给模块的状态信息   保温，加热，关机，变频器运行,模块通道使能标志
+#define CHANGE_PAGE				827		//切换页面信息
+#define MAIN_PAGE	51
+#define ADJUST_PT100	58
+#define ADJUST_NI120	59
+#define ADJUST_MV_K		60
+#define ADJUST_MV_J		61
+#define ADJUST_PT100_S	69
+#define ADJUST_NI120_S	70
+#define ADJUST_MV_K_S	71
+#define ADJUST_MV_J_S	72
+#define LOCK_SET_PAGE	64
+#define INPUT_PASS_UNLOCK	65
+#define PRODUCE_NO		100		//出厂编号
+#define IO_TEST_PAGE	101		//IO测试页面
+#define IO_MONITOR_PAGE	102		//IO监控页面
+#define ALARMRECORD_PAGE1	103		//报警记录1
+#define GLUE_PAGE	104		//分段点胶
+//以上数据为实时发送给模块的数据*************************************************
+#define	STATE_CODE			    828	//状态消息提示
+#define	STATE_CODE2			    829	//状态消息提示		保温1，加热2，关机4
+#define	VFD1_RUN_FRE	    	830//输出频率1		1位小数
+#define	VFD2_RUN_FRE	    	831//输出频率2
+#define START_BUTTON			832//泵送启动
+#define STOP_BUTTON				833//泵送停止
+#define	SPEED			   		834	//皮带轮输入频率
+#define	ALARM_CODE			    835	//报警消息提示
+
+#define		ADJUST1_0	    836	//校0度按键
+#define		ADJUST12_0	    847	//校0度按键
+#define		ADJUST15_0	    850	//校0度按键
+#define		ADJUST1_250	    851	//校250度按键
+#define		ADJUST12_250	862	//校250度按键
+#define		ADJUST15_250	865	//校250度按键
+#define 	ADJUST_ERR		866		//校准错误提示
+#define		TEMP_ADC1		867	//为传感器发过来数据
+#define		TEMP_ADC11	    877	//0x36D
+
+#define START_BUTTON2			878//泵送启动2
+#define STOP_BUTTON2				879//泵送停止2
+#define	VFD2_STATE_CODE			    880	//变频器2状态消息提示
+#define CHANGE_PAGE_TEMP			881//页面切换辅助变量
+#define	VFD_RUN_STATE			    882	//变频器运行状态
+//15个通道中间变量--------------------------------------------------------
+#define CH1M			  900	
+#define CHM_OFFSET	16
+#define CH2M			(CH1M+CHM_OFFSET)
+#define CH3M			(CH1M+CHM_OFFSET*2)
+#define CH4M			(CH1M+CHM_OFFSET*3)
+#define CH5M			(CH1M+CHM_OFFSET*4)
+#define CH6M			(CH1M+CHM_OFFSET*5)
+#define CH7M			(CH1M+CHM_OFFSET*6)
+#define CH8M			(CH1M+CHM_OFFSET*7)
+#define CH9M			(CH1M+CHM_OFFSET*8)
+#define CH10M			(CH1M+CHM_OFFSET*9)
+#define CH11M			(CH1M+CHM_OFFSET*10)
+#define CH12M			(CH1M+CHM_OFFSET*11)
+#define PC					0
+#define PC_SET				1
+#define TEMPERATURE			2	//当前温度
+#define SET_TEMPER		    3			//目标温度
+#define SAMPLE_TIMES		4
+#define AUTO_TUNE_PROCESS_FLAG	     5
+#define AUTO_TUNE_COUNT				 6
+#define TIMER_BEGIN_FLAG    7
+#define TIMER_END_FLAG		8
+#define TIMER_COUNT			9
+#define AUTO_TUNE_MIN		10
+#define AUTO_TUNE_MAX		11
+#define AUTO_TUNE_SWING		12
+#define AUTO_TUNE_PB		13
+#define AUTO_TUNE_T			14
+//#define AUTO_TUNE_CYCLE		15
+
+/////////////////////////////////////////////////////////
+
+#define	VFD_CMD_READ		1141	//变频器控制地址
+#define	VFD1_CTR		    1142	//1050-1100为变频器相关变量
+#define OUT_FRE1			1143	//输出频率1
+#define	VFD1_UP_TIME_RD	    1144
+#define	VFD1_DOWN_TIME_RD	1145
+#define	VFD1_ERROR		    1146
+#define	VFD1_SET_MODE	    1147
+#define	VFD_SET_FRE_READ	1148	//变频器设定频率地址
+#define	VFD_FRE_INPUT_READ	1149//频率信号输入方式
+#define	VFD_UP_LIMIT_READ	1150//上限频率
+#define	VFD_DOWN_LIMIT_READ	1151//下限频率
+#define	VFD_MAX_OUTPUT_READ	1152//最大频率
+
+#define NOW_TIME			1153
+#define BOOT_TIME			1154
+#define SHUTDOWM_TIME		1155
+#define START_TIME1			1156
+#define FINISH_TIME1		1157
+#define START_TIME2			1158
+#define FINISH_TIME2		1159
+#define STATUS_FLAG			1160		//工作日标志,判断是加热、保温还是关机
+
+#define LOWER				1161		//当前温度低于设宇值-LT时，置低温标志位
+#define HIGHER1				1162		//高温报警标志位
+#define HIGHER2				1163	 	//高温停机标志位
+#define SENSOR_UNUSUAL      1164		   //PT100传感器异常
+
+#define TEMPER_NORMAL       1165		//工作指示灯标志
+#define TEMPER_INSTRU       1166  	//主缸温度在设定值一定范围时，工作指示灯亮
+#define VFD_RUN_FLAG		1167		//变频器运行中间变量
+
+#define RUN_MODE			1168 		
+#define PUMP_CMD			1169
+#define PUMP_STATE			1170
+#define PUMP_RUN			0x0001
+#define MANUAL				0x0001
+		
+#define CUR_CH				1171				//当前通道
+#define BZ_TIME				1172				//蜂鸣器导通时间*10ms
+#define RUN_TIME_HOUR		1173	//本次运行时间时　
+#define RUN_TIME_MINUTE		1174	//本次运行时间分　
+#define SOLID_UNUSUAL       1175         //固态继电器异常 
+#define	VFD1_RUN_FRE_T	    1176	//输出频率1，带2位小数
+#define	VFD2_RUN_FRE_T	    1177	//输出频率2，带2位小数
+#define YEAR				1178//
+#define MONTH				1179//
+#define DAY					1180//
+#define WEEK				1181//周
+#define HOUR				1182//
+#define MINUTE				1183//
+#define SECOND				1184//
+#define SPEED_WIDTH				1185//脉宽测出来的转速
+#define SPEED_NUMBER				1186//脉冲数测出来的转速
+#define TIM3_OVER_TIMES				1187//定时器3溢出次数
+#define FUNCTION_Y21				1188//Y21的功能选择	1－报警，0－变频器启停
+#define HEAT_FOLLOW_MODE			1189//管枪加热跟随模式	1-主缸温度到达设定值后启动管枪加热，0－管枪加热跟随主缸，管温度到达设定值时启动枪加热
+#define	COM_ERR		    1190//通信错误
+#define	ALARM_FLAG	    1191//有报警
+#define	UART_FLAG	    1192//通信指示
+#define ALARM_MODE		1193//报警模式	1-所有报警均断电源，0－只有超温报警才断电源
+
+#define	VFD1_MAX_FRE_T	    	1194	//变频器最大输频率，带2位小数
+#define	VFD2_CMD_READ			1195	//变频器控制地址
+#define	VFD2_CTR		    		1196	//1050-1100为变频器相关变量
+#define OUT_FRE2					1197	//输出频率2
+#define	VFD2_UP_TIME_RD	   1198
+#define	VFD2_DOWN_TIME_RD		1199
+#define	VFD2_ERROR		    	1200
+#define	VFD2_SET_MODE	    	1201
+#define	VFD2_SET_FRE_READ		1202	//变频器设定频率地址
+#define	VFD2_FRE_INPUT_READ	1203//频率信号输入方式
+#define	VFD2_UP_LIMIT_READ	1204//上限频率
+#define	VFD2_DOWN_LIMIT_READ	1205//下限频率
+#define	VFD2_MAX_OUTPUT_READ	1206//最大频率
+#define	VFD2_MAX_FRE_T	    	1207	//变频器最大输频率，带2位小数
+#define PUMP_CMD2				1208	//启动变频器辅助变量
+#define VFD2_RUN_FLAG			1209	//变频器2运行标志
+#define PUMP2_STATE				1210	//变频器2运行标志－频率降为0时再清零
+#define TANK_NO			1211//主缸数量
+#define VFD_UP_DOWN_MAX_EN			1212//上限频率、下限频率、最大频率发送使能
+#define FUNCTION_Y1Y2				1213//X1X2Y1Y2的功能选择	1－分段点胶，0－活塞泵,2-枪开关和阀,3-PUR机上升下降	
+#define REVERSE_PUMP_EN				1214//变频器停机时反泵一下	1－使能，0－不使能
+#define FOLLOW_NUMBER				1215//线性跟随段数	1－分5段，0－分2段
+
+#define X0_LIGHT				1235//X0指示灯
+#define X1_LIGHT				1236//X1指示灯
+#define X2_LIGHT				1237//X2指示灯
+#define X3_LIGHT				1238//X3指示灯
+#define X4_LIGHT				1239//X4指示灯
+#define X5_LIGHT				1240//X5指示灯
+#define X6_LIGHT				1241//X6指示灯
+#define X7_LIGHT				1242//X7指示灯
+#define X10_LIGHT				1243//X10指示灯
+#define X11_LIGHT				1244//X11指示灯
+#define X12_LIGHT				1245//X12指示灯
+#define X13_LIGHT				1246//X13指示灯
+#define X14_LIGHT				1247//X14指示灯
+#define X15_LIGHT				1248//X15指示灯
+#define X16_LIGHT				1249//X16指示灯
+#define X17_LIGHT				1250//X17指示灯
+#define Y0_LIGHT				1251//Y0指示灯
+#define Y1_LIGHT				1252//Y1指示灯
+#define Y2_LIGHT				1253//Y2指示灯
+#define Y3_LIGHT				1254//Y3指示灯
+#define Y4_LIGHT				1255//Y4指示灯
+#define Y5_LIGHT				1256//Y5指示灯
+#define Y6_LIGHT				1257//Y6指示灯
+#define Y7_LIGHT				1258//Y7指示灯
+#define Y10_LIGHT				1259//Y10指示灯
+#define Y11_LIGHT				1260//Y11指示灯
+#define Y12_LIGHT				1261//Y12指示灯
+#define Y13_LIGHT				1262//Y13指示灯
+#define Y20_LIGHT				1263//Y20指示灯
+#define Y21_LIGHT				1264//Y21指示灯
+
+#define S1_LIGHT				1265//S1指示灯
+#define S2_LIGHT				1266//S2指示灯
+#define S3_LIGHT				1267//S3指示灯
+#define S4_LIGHT				1268//S4指示灯
+#define S5_LIGHT				1269//S5指示灯
+#define S6_LIGHT				1270//S6指示灯
+#define S7_LIGHT				1271//S7指示灯
+#define S8_LIGHT				1272//S8指示灯
+#define S9_LIGHT				1273//S9指示灯
+#define S10_LIGHT				1274//S10指示灯
+#define S11_LIGHT				1275//S11指示灯
+
+#define Y0_TEST					1276//Y0测试
+#define Y1_TEST					1277//Y1测试
+#define Y2_TEST					1278//Y2测试
+#define Y3_TEST					1279//Y3测试
+#define Y4_TEST					1280//Y4测试
+#define Y5_TEST					1281//Y5测试
+#define Y6_TEST					1282//Y6测试
+#define Y7_TEST					1283//Y7测试
+#define Y10_TEST				1284//Y10测试
+#define Y11_TEST				1285//Y11测试
+#define Y12_TEST				1286//Y12测试
+#define Y13_TEST				1287//Y13测试
+#define Y20_TEST				1288//Y20测试
+#define Y21_TEST				1289//Y21测试
+#define S1_TEST					1290//S1测试
+#define S2_TEST					1291//S2测试
+#define S3_TEST					1292//S3测试
+#define S4_TEST					1293//S4测试
+#define S5_TEST					1294//S5测试
+#define S6_TEST					1295//S6测试
+#define S7_TEST					1296//S7测试
+#define S8_TEST					1297//S8测试
+#define S9_TEST					1298//S9测试
+#define S10_TEST				1299//S10测试
+#define S11_TEST				1300//S11测试
+
+
+//extern INT16U	VgusReg[VGUSREG_MAX_NUM];
+//初始化通信数据
+extern void InitComm0Data(void);
+//通信过程处理
+extern void VFD_ComCtr(void);
+extern void ADC_ComCtr(void);
+extern void VGUS_ComCtr(void);
+
+
+
+#endif
+
+
